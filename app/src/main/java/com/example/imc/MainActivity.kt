@@ -25,8 +25,23 @@ class MainActivity : AppCompatActivity() {
 
         // Get name and result from local storage
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
+        val savedAboutPref = sharedPreferences.getBoolean("about", false)
         val savedName = sharedPreferences.getString("name", null)
         val savedResult = sharedPreferences.getFloat("result", -1f)
+
+        // Show about if it's the first time
+        if (!savedAboutPref) {
+            aboutContainer.visibility = TextView.VISIBLE
+            aboutButton.setOnClickListener {
+                aboutContainer.visibility = TextView.GONE
+                val editor = sharedPreferences.edit()
+                editor.putBoolean("about", true)
+                editor.apply()
+            }
+        }
+        
+
+
 
         if (savedName != null && savedResult != -1f) {
             resultTextView.text = when {
