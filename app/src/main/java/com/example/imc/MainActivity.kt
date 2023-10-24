@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -13,8 +14,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val aboutContainer = findViewById<TextView>(R.id.aboutContainer)
-        val aboutButton = findViewById<Button>(R.id.welcomeContainer)
+        val aboutContainer = findViewById<RelativeLayout>(R.id.aboutContainer)
+        val aboutButton = findViewById<Button>(R.id.aboutButton)
 
         val name = findViewById<EditText>(R.id.nameEditText)
         val height = findViewById<EditText>(R.id.heightEditText)
@@ -29,20 +30,22 @@ class MainActivity : AppCompatActivity() {
         val savedName = sharedPreferences.getString("name", null)
         val savedResult = sharedPreferences.getFloat("result", -1f)
 
-        // Show about if it's the first time
+        // Show about if it's the first time, else hide it
         if (!savedAboutPref) {
             aboutContainer.visibility = TextView.VISIBLE
-            aboutButton.setOnClickListener {
-                aboutContainer.visibility = TextView.GONE
-                val editor = sharedPreferences.edit()
-                editor.putBoolean("about", true)
-                editor.apply()
-            }
+        } else {
+            aboutContainer.visibility = TextView.GONE
         }
-        
 
+        // Hide about
+        aboutButton.setOnClickListener {
+            aboutContainer.visibility = TextView.GONE
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("about", true)
+            editor.apply()
+        }
 
-
+        // Show name and result if they exist
         if (savedName != null && savedResult != -1f) {
             resultTextView.text = when {
                 savedResult <= 18.5 -> {
@@ -60,10 +63,11 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // Calculate BMI
         calculateButton.setOnClickListener {
-            val height = height.text.toString().toDouble() / 100
-            val weight = weight.text.toString().toDouble()
-            val result = weight / (height * height)
+            val heightData = height.text.toString().toDouble() / 100
+            val weightData = weight.text.toString().toDouble()
+            val result = weightData / (heightData * heightData)
             val formattedResult = 
                 when {
                     result <= 18.5 -> {
