@@ -17,6 +17,8 @@
 
     <string name="result_text">Result</string>
     <string name="result">Result</string>
+    <string name="calculate_again">Calculate new BMI</string>
+    <string name="reset">Reset all BMI data</string>
 
     <string name="category_text">Category</string>
     <string name="bmi_range_text">BMI range</string>

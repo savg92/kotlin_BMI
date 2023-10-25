@@ -2,9 +2,11 @@ package com.example.imc
 
 import android.content.Context
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RelativeLayout
+import android.widget.TableLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
@@ -17,12 +19,18 @@ class MainActivity : AppCompatActivity() {
         val aboutContainer = findViewById<RelativeLayout>(R.id.aboutContainer)
         val aboutButton = findViewById<Button>(R.id.aboutButton)
 
+        val formContainer = findViewById<RelativeLayout>(R.id.formContainer)
         val name = findViewById<EditText>(R.id.nameEditText)
         val height = findViewById<EditText>(R.id.heightEditText)
         val weight = findViewById<EditText>(R.id.weightEditText)
         val calculateButton = findViewById<Button>(R.id.calculateButton)
 
+        val resultContainer = findViewById<RelativeLayout>(R.id.resultContainer)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val calculateAgainBtn = findViewById<Button>(R.id.calculateAgainButton)
+        val resetBtn = findViewById<Button>(R.id.resetButton)
+
+        var table = findViewById<TableLayout>(R.id.tableLayout)
 
         // Get name and result from local storage
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
@@ -93,6 +101,29 @@ class MainActivity : AppCompatActivity() {
             val editor = sharedPreferences.edit()
             editor.putString("name", name.text.toString())
             editor.putFloat("result", result.toFloat())
+            editor.apply()
+
+            resultContainer.visibility = TextView.VISIBLE
+            table.visibility = TextView.VISIBLE
+            formContainer.visibility = View.GONE
+        }
+
+         // Show form
+         calculateAgainBtn.setOnClickListener {
+              formContainer.visibility = View.VISIBLE
+         }
+
+        // Reset about, name and result
+        resetBtn.setOnClickListener {
+            aboutContainer.visibility = TextView.VISIBLE
+            name.text.clear()
+            height.text.clear()
+            weight.text.clear()
+            resultTextView.text = ""
+            val editor = sharedPreferences.edit()
+            editor.putBoolean("about", false)
+            editor.putString("name", null)
+            editor.putFloat("result", -1f)
             editor.apply()
         }
     }
