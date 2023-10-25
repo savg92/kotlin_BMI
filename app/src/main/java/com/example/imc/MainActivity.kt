@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         val calculateAgainBtn = findViewById<Button>(R.id.calculateAgainButton)
         val resetBtn = findViewById<Button>(R.id.resetButton)
 
-        var table = findViewById<TableLayout>(R.id.tableLayout)
+        val table = findViewById<TableLayout>(R.id.tableLayout)
 
         // Get name and result from local storage
         val sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE)
