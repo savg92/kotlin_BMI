@@ -7,12 +7,12 @@
     <string name="about_text">The body mass index (BMI) is a mathematical ratio that associates the mass (weight) and height of an individual, devised by the Belgian statesman Adolphe Quetelet, which is why it is also known as the Quetelet index.</string>
     <string name="about_btn">Do not show</string>
 
-    <string name="name_text">Name:</string>
-    <string name="input_name">Enter your name</string>
-    <string name="height_text">Height (cm):</string>
-    <string name="input_height">Enter your height</string>
-    <string name="weight_text">Weight (kg):</string>
-    <string name="input_weight">Enter your weight</string>
+    <string name="name_text">Enter your name:</string>
+    <string name="input_name">Name</string>
+    <string name="height_text">Enter your height:</string>
+    <string name="input_height">Height (cm)</string>
+    <string name="weight_text">Enter your weight:</string>
+    <string name="input_weight">Weight (kg)</string>
     <string name="calculate">Calculate</string>
 
     <string name="result_text">Result</string>

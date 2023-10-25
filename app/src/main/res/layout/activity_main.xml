@@ -20,6 +20,7 @@
             android:layout_centerInParent="true"
             android:gravity="center"
             android:text="@string/bmi_text"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -49,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/welcomeContainer"
         android:padding="10dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/welcomeContainer">
 
         <TextView
@@ -88,6 +89,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/header"
         android:padding="10dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/aboutContainer">
 
         <TextView
@@ -167,7 +169,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/formContainer"
         android:padding="10dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintTop_toBottomOf="@id/formContainer">
 
         <TextView
@@ -213,10 +215,10 @@
 
     <TableLayout
         android:id="@+id/tableLayout"
-        android:layout_width="322dp"
-        android:layout_height="82dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultContainer">
@@ -224,7 +226,8 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="1dp">
+            android:layout_marginTop="1dp"
+            android:background="@color/light_blue">
 
             <TextView
                 android:id="@+id/categoryLabel"
@@ -345,5 +348,6 @@
         </TableRow>
 
     </TableLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
     
